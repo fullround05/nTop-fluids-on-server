@@ -1,6 +1,3 @@
-:: turn off command echo
-@echo off
-
 :: Configuration
 set IP=%1
 set Port=%2
@@ -8,14 +5,14 @@ set Port=%2
 set ntopUname=%3
 set ntopPasswd=%4
 
-set Velocity=[0,300,0]
-set VelocityUnits=mm/s
+:: This is not a problem when running from the command prompt,
+:: but the nTop run command block does not seem to like the format [x,y,z].
+:: The notebook exports the vector as x_y_z and we convert it to [x,y,z] here
+set Velocity=%5
+set "Velocity=[%Velocity:_=,%]"
 
-set Pressure=101325
-set PressureUnits=Pa
-
-set CellSize=15
-set CellSizeUnits=mm
+set Pressure=%6
+set CellSize=%7
 
 :: Change working directory to the folder this script is located in
 cd /d "%~dp0"
@@ -30,21 +27,21 @@ echo             "description": "",
 echo             "name": "Inlet Velocity",
 echo             "type": "vector",
 echo             "value": %Velocity%,
-echo             "units": "%VelocityUnits%"
+echo             "units": "mm/s"
 echo         },
 echo         {
 echo             "description": "",
 echo             "name": "Outlet Pressure",
 echo             "type": "real",
 echo             "value": %Pressure%,
-echo             "units": "%PressureUnits%"
+echo             "units": "Pa"
 echo         },
 echo         {
 echo             "description": "",
 echo             "name": "Cell Size",
 echo             "type": "real",
 echo             "value": %CellSize%,
-echo             "units": "%CellSizeUnits%"
+echo             "units": "mm"
 echo         }
 echo     ],
 echo     "title": "Server Side CFD"
