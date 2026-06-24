@@ -5,14 +5,18 @@ set Port=%2
 set ntopUname=%3
 set ntopPasswd=%4
 
+set Viscocity=%5
+set Density=%6
+
 :: This is not a problem when running from the command prompt,
 :: but the nTop run command block does not seem to like the format [x,y,z].
 :: The notebook exports the vector as x_y_z and we convert it to [x,y,z] here
-set Velocity=%5
+set Velocity=%7
 set "Velocity=[%Velocity:_=,%]"
 
-set Pressure=%6
-set CellSize=%7
+set Pressure=%8
+set CellSize=%9
+
 
 :: Change working directory to the folder this script is located in
 cd /d "%~dp0"
@@ -22,6 +26,20 @@ cd /d "%~dp0"
 echo {
 echo     "description": "",
 echo     "inputs": [
+echo        {
+echo            "description": "",
+echo            "name": "Fluid Viscocity",
+echo            "type": "real",
+echo            "value": %Viscocity%,
+echo            "units": "mm^2/s"
+echo        },
+echo        {
+echo            "description": "",
+echo            "name": "Fluid Density",
+echo            "type": "real",
+echo            "value": %Density%,
+echo            "units": "kg/m^3"
+echo        },
 echo         {
 echo             "description": "",
 echo             "name": "Inlet Velocity",
