@@ -77,12 +77,12 @@ putty.exe -P %Port% root@%IP%
 
 :: Copy the inputs, notebook, and simulation models to the server
 pscp.exe -batch -P %port% exchange\input.json root@%ip%:
-pscp.exe -batch -P %port% ServerRunner.ntop root@%ip%:
+pscp.exe -batch -P %port% RegServerRunner.ntop root@%ip%:
 pscp.exe -batch -P %port% exchange\Fluid.implicit root@%ip%:
 pscp.exe -batch -P %port% exchange\Inlet.implicit root@%ip%:
 pscp.exe -batch -P %port% exchange\Outlet.implicit root@%ip%:
 
 :: SSH to the server and run the flow analysis
-plink.exe -P %Port% root@%IP% "ntopcl --username %ntopUname% --password %ntopPasswd% -v2 -j input.json ServerRunner.ntop"
+plink.exe -P %Port% root@%IP% "ntopcl --username %ntopUname% --password %ntopPasswd% -v2 -j input.json RegServerRunner.ntop"
 
 pscp.exe -batch -P %port% root@%ip%:Result.vti exchange\Result.vti
