@@ -18,5 +18,5 @@ RUN chmod +x /startup.sh
 ENTRYPOINT ["/startup.sh"]
 
 # How to build and push:
-# docker build -t gravygravy/ntop-vast
+# docker build -t gravygravy/ntop-vast .
 # docker push gravygravy/ntop-vast
