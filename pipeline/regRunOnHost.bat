@@ -1,3 +1,6 @@
+:: Batch variables
+@echo off
+
 :: Configuration
 set "IP=%~1"
 set "Port=%~2"
@@ -83,6 +86,7 @@ if "%keyImported%"=="0" pageant.exe key.ppk
 if "%knownServer%"=="0" putty.exe -P %Port% root@%IP%
 
 :: Copy the inputs, notebook, and simulation models to the server
+echo Uploading Files to Server
 pscp.exe -batch -P %port% exchange\input.json root@%ip%:
 pscp.exe -batch -P %port% RegServerRunner.ntop root@%ip%:
 pscp.exe -batch -P %port% exchange\Fluid.implicit root@%ip%:
@@ -92,4 +96,6 @@ pscp.exe -batch -P %port% exchange\Outlet.implicit root@%ip%:
 :: SSH to the server and run the flow analysis
 plink.exe -P %Port% root@%IP% "ntopcl --username %ntopUname% --password %ntopPasswd% -v2 -j input.json RegServerRunner.ntop"
 
+:: Copy the result back
+echo Downloading Simulation Result
 pscp.exe -batch -P %port% root@%ip%:Result.vti exchange\Result.vti
