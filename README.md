@@ -14,7 +14,7 @@ Although the inputs for Regular and Aircraft Flow Analysis are different, the sa
 ## Choosing a Vast.ai Instance
 Vast.ai is an online marketplace that lets you rent GPU servers and pay by the second. Although there are many sites that do the same thing, this is the service I wrote and tested for.
 
-You can get started with just $5, and I already have a public template with nTop Automate that you can select.
+You can get started with just $5, and I already have a public template for nTop Automate that you can find [here](https://cloud.vast.ai?ref_id=571287&template_id=fb94aa2b2faf08c305ce99b6963c5010).
 
 When choosing a server, I have found that there are a few specs that make a huge difference in how fast the simulation runs.
 
