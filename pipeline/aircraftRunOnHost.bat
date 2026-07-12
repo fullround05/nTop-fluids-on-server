@@ -84,8 +84,8 @@ pscp.exe -batch -P %port% exchange\input.json root@%ip%:
 pscp.exe -batch -P %port% AircraftServerRunner.ntop root@%ip%:
 pscp.exe -batch -P %port% exchange\Body.implicit root@%ip%:
 
-:: SSH to the server and run the flow analysis
-plink.exe -P %Port% root@%IP% "ntopcl --username %ntopUname% --password %ntopPasswd% -v2 -j input.json AircraftServerRunner.ntop"
+:: SSH to the server, remove the old results, and run the flow analysis
+plink.exe -P %Port% root@%IP% "rm -f Result.vti && ntopcl --username %ntopUname% --password %ntopPasswd% -v2 -j input.json AircraftServerRunner.ntop"
 
 :: Copy the result back
 echo Downloading Simulation Result

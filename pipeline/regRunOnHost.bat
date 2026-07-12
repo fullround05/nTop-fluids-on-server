@@ -93,8 +93,8 @@ pscp.exe -batch -P %port% exchange\Fluid.implicit root@%ip%:
 pscp.exe -batch -P %port% exchange\Inlet.implicit root@%ip%:
 pscp.exe -batch -P %port% exchange\Outlet.implicit root@%ip%:
 
-:: SSH to the server and run the flow analysis
-plink.exe -P %Port% root@%IP% "ntopcl --username %ntopUname% --password %ntopPasswd% -v2 -j input.json RegServerRunner.ntop"
+:: SSH to the server, remove the old results, and run the flow analysis
+plink.exe -P %Port% root@%IP% "rm -f Result.vti && ntopcl --username %ntopUname% --password %ntopPasswd% -v2 -j input.json RegServerRunner.ntop"
 
 :: Copy the result back
 echo Downloading Simulation Result
