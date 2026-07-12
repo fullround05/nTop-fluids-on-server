@@ -45,14 +45,12 @@ The nTop file with the custom block is either `RegCloudExchanger.ntop` or `Aircr
 With the block imported you can just fill out the inputs and every step will run automatically.
 
 ### A couple quirks to keep in mind
-- The `Script (Pipeline) Directory` parameter needs to end with a "\\" for the script to trigger properly.
+I am using the PuTTY binaries to handle SSH because they run reliably in wine. This results in a couple quirks with key importing and host fingerprint verification:
 
-- I am using the PuTTY binaries to handle SSH because they run reliably in wine. This results in a couple quirks with key importing and host fingerprint verification:
+1. The keys are handled using `pageant.exe`. When you run the block for the first time with the `SSH Key Imported` box unchecked, pageant will run in the background, and you will be prompted to enter the key password if applicable. To continue, you need to **Check the `SSH Key Imported` box and run the block again!** Running pageant will sometimes block the rest of the script from executing.
 
-    1. The keys are handled using `pageant.exe`. When you run the block for the first time with the `SSH Key Imported` box unchecked, pageant will run in the background, and you will be prompted to enter the key password if applicable. To continue, you need to **Check the `SSH Key Imported` box and run the block again!** Running pageant will block the rest of the script from executing.
+> Be sure to uncheck the `SSH Key Imported` box every time pageant is not running
 
-    > Be sure to uncheck the `SSH Key Imported` box every time pageant is not running
+2. In order to confirm the host's fingerprint and accessibility, the script will attempt to connect to the server using PuTTY in another window. When you run the block for the first time with the `Known Server` box unchecked, a popup asking to confirm the fingerprint will show. Once PuTTY successfully connects, you may close the PuTTY window to continue. You can then leave the `Known Server` box checked.
 
-    2. In order to confirm the host's fingerprint and accessibility, the script will attempt to connect to the server using PuTTY in another window. When you run the block for the first time with the `Known Server` box unchecked, a popup asking to confirm the fingerprint will show. Once PuTTY successfully connects, you may close the PuTTY window to continue. You can then leave the `Known Server` box checked.
-
-    > Be sure to uncheck the `Known Server` box every time the server is new
+> Be sure to uncheck the `Known Server` box every time the server is new
